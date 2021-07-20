@@ -83,7 +83,7 @@ $(function(){
           insertHTML += buildHTML(message)
         });
         $('.main-chat__main-content__message-space').append(insertHTML);
-        // $('.main-chat__main-content__message-space').animate({ scrollTop: $('.main-chat__main-content__message-space')[0].scrollHeight});
+        $('.main-chat__main-content__message-space').animate({ scrollTop: $('.main-chat__main-content__message-space')[0].scrollHeight});
     })
     .fail(function() {
       alert('error');

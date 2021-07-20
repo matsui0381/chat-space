@@ -7,8 +7,12 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @messages = @group.messages.new(message_params)
+  @user = params[:user]
+
+  @messages = @group.messages.new(message_params)
     if @messages.save
+      UserMailer.with(user: @user).welcome_mail.deliver_later
+      
       respond_to do |format|
         format.html { redirect_to group_messages_path(@group), notice: "メッセージを送信しました" }
         format.json
