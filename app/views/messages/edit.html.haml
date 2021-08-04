@@ -1,1 +1,7 @@
-TEST
+.chat-group-form
+  %h1 日報編集
+  = form_for [@group,@message] do |f|
+    = f.text_area :content,class:'message-edit-form'
+    = f.submit '送信',class:'edit-send-btn'
+  .edit-cancel-btn
+    = link_to 'キャンセル',group_messages_path(params[:group_id])
