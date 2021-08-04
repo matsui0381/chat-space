@@ -3,14 +3,14 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new
-    @messages = @group.messages.includes(:user)
+    @messages = @group.messages.includes(:user).order(created_at: "DESC")
   end
   
   def create
     @messages = @group.messages.new(message_params)
     if @messages.save
       respond_to do |format|
-        format.html { redirect_to group_messages_path(@group), notice: "メッセージを送信しました" }
+        format.html { redirect_to group_messages_path(@group), notice: "日報を送信しました" }
         format.json
       end
     end
@@ -21,18 +21,26 @@ class MessagesController < ApplicationController
   end
 
   def update
-    if  @message.update(message_params)
-        redirect_to root_path, notice: '日報を編集しました'
+    @message = Message.find(params[:id])
+    if @message.update(message_params)
+        redirect_to group_messages_path(params[:group_id]), notice: "日報を編集しました"
     else
       render :edit
-      
     end
   end
-    private
+
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    redirect_to group_messages_path(params[:group_id]), notice: "日報を削除しました"
+  end
+
+  private
     def message_params
       params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
     end
+
     def set_group
       @group = Group.find(params[:group_id])
     end
-end
+  end

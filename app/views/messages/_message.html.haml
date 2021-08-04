@@ -4,6 +4,10 @@
       = message.user.name
     .message__upper-message__date
       = message.created_at.strftime("%Y/%m/%d %H:%M")
+    .message__upper-message__edit
+      = link_to '編集', edit_group_message_path(@group.id,message.id)
+      = "/"
+      = link_to '削除', group_message_path(@group.id,message.id), method: :delete, data: { confirm: "日報を削除しますか？" }
   .message__lower-message
     - if message.content.present?
       %p.lower-message__content
