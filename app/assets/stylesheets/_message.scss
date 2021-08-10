@@ -6,7 +6,7 @@
 // }
 
 @media screen and (min-width: 767px) { /*ウィンドウ幅が767px以上の場合に適用(PC用)*/
-.side-ber{
+.side-bar{
   width: 300px;
   color: white;
   float: left;
@@ -258,7 +258,7 @@ a{
 
 @media screen and (min-width: 491px) and (max-width: 767px) { /*ウィンドウ幅が491~767pxまでの場合に適用(タブレット用)*/
 
-  .side-ber{
+  .side-bar{
     width: 100px;
     color: white;
     float: left;

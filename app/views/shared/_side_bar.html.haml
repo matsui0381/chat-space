@@ -1,0 +1,121 @@
+.side-bar
+  .side-bar__top-content
+    .side-bar__top-content__user
+      .side-bar__top-content__user__user-name
+        = current_user.name
+      .side-bar__top-content__user__user-icon
+        = link_to new_group_path(),class:"edit_icon"do
+          %i.far.fa-edit
+        = link_to edit_user_path(current_user),class:"edit_icon"do
+          %i.fas.fa-cog
+  .side-bar__group
+    - if current_user.name == "大阪社員"
+      .side-bar__group__department
+        %details
+          %summary 営業部
+          - current_user.groups.where(department: "営業部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      .side-bar__group__department
+        %details
+          %summary 貿易部
+          - current_user.groups.where(department: "貿易部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      .side-bar__group__department
+        %details
+          %summary システム部
+          - current_user.groups.where(department: "システム部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      - current_user.groups.where(department: nil).each do |g|
+        = link_to group_messages_path(g) do
+          .side-bar__group__department__name
+            .report-icon
+              %i.fas.fa-book
+            = g.name
+    - else
+      - current_user.groups.each do |g|
+        = link_to group_messages_path(g) do
+          .side-bar__group__department__name
+            .report-icon
+              %i.fas.fa-book
+            = g.name
+  -# .side-bar__groups
+  -#   .side-bar__groups__group
+  -#     - current_user.groups.each do |group|
+  -#       = link_to group_messages_path(group) do
+  -#         .side-bar__groups__group__name
+  -#           = group.name
+          -# .side-bar__groups__group__message
+          -#   = group.show_last_message
+
+.side-bar-mobile
+  .side-bar-mobile__top-content
+    .side-bar-mobile__top-content__user
+      .side-bar-mobile__top-content__user__user-name
+        = current_user.name
+      .side-bar-mobile__top-content__user__user-icon
+        = link_to new_group_path(),class:"edit_icon"do
+          %i.far.fa-edit
+        = link_to edit_user_path(current_user),class:"edit_icon"do
+          %i.fas.fa-cog
+  .side-bar-mobile__group
+    - if current_user.name == "大阪社員"
+      .side-bar-mobile__group__department
+        %details
+          %summary 営業部
+          - current_user.groups.where(department: "営業部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar-mobile__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      .side-bar-mobile__group__department
+        %details
+          %summary 貿易部
+          - current_user.groups.where(department: "貿易部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar-mobile__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      .side-bar-mobile__group__department
+        %details
+          %summary システム部
+          - current_user.groups.where(department: "システム部").each do |g|
+            = link_to group_messages_path(g) do
+              .side-bar-mobile__group__department__name
+                .report-icon
+                  %i.fas.fa-book
+                = g.name
+      .side-bar-mobile__group__department
+        - current_user.groups.where(department: nil).each do |g|
+          = link_to group_messages_path(g) do
+            .side-bar-mobile__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+    - else
+      .side-bar-mobile__group__department
+        - current_user.groups.each do |g|
+          = link_to group_messages_path(g) do
+            .side-bar-mobile__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+  -# .side-bar-mobile__groups
+  -#   .side-bar-mobile__groups__group
+  -#     - current_user.groups.each do |group|
+  -#       = link_to group_messages_path(group), class: "group_link" do
+  -#         .side-bar-mobile__groups__group__name
+  -#           = group.name
