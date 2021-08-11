@@ -3,11 +3,36 @@
     background-color: $light_blue;
     color: $white;
     text-align: center;
+    position: absolute;
+    width: 100vw;
+    z-index: 1;
+    visibility: hidden;
+    -webkit-animation: fade-in-out 5s ease 0s forwards;
+    animation: fade-in-out 5s ease 0s forwards;
+    display: table;
   }
 
   .alert {
     background-color: $alert_orange;
     color: $white;
     text-align: center;
+    position: absolute;
+    width: 100vw;
+    z-index: 1;
+    visibility: hidden;
+    -webkit-animation: fade-in-out 5s ease 0s forwards;
+    animation: fade-in-out 5s ease 0s forwards;
+    display: table;
+  }
+  @-webkit-keyframes fade-in-out {
+    0% {visibility: hidden; opacity: 0;}
+    50% {visibility: visible; opacity: 1;}
+    100% {visibility: hidden; opacity: 0;}
+  }
+  
+  @keyframes fade-in-out {
+    0% {visibility: hidden; opacity: 0;}
+    50% {visibility: visible; opacity: 1;}
+    100% {visibility: hidden; opacity: 0;}
   }
 }

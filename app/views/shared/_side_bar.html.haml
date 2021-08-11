@@ -3,6 +3,9 @@
     .side-bar__top-content__user
       .side-bar__top-content__user__user-name
         = current_user.name
+      .side-bar__top-content__user__sign-out
+        = link_to destroy_user_session_path, method: :delete do
+          %i.fas.fa-sign-out-alt
       .side-bar__top-content__user__user-icon
         = link_to new_group_path(),class:"edit_icon"do
           %i.far.fa-edit
@@ -37,6 +40,12 @@
                 .report-icon
                   %i.fas.fa-book
                 = g.name
+      - current_user.groups.where(department: "").each do |g|
+        = link_to group_messages_path(g) do
+          .side-bar__group__department__name
+            .report-icon
+              %i.fas.fa-book
+            = g.name
       - current_user.groups.where(department: nil).each do |g|
         = link_to group_messages_path(g) do
           .side-bar__group__department__name
@@ -64,6 +73,9 @@
     .side-bar-mobile__top-content__user
       .side-bar-mobile__top-content__user__user-name
         = current_user.name
+      .side-bar__top-content__user__sign-out
+        = link_to destroy_user_session_path, method: :delete do
+          %i.fas.fa-sign-out-alt
       .side-bar-mobile__top-content__user__user-icon
         = link_to new_group_path(),class:"edit_icon"do
           %i.far.fa-edit
@@ -98,6 +110,13 @@
                 .report-icon
                   %i.fas.fa-book
                 = g.name
+      .side-bar-mobile__group__department
+        - current_user.groups.where(department: "").each do |g|
+          = link_to group_messages_path(g) do
+            .side-bar-mobile__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
       .side-bar-mobile__group__department
         - current_user.groups.where(department: nil).each do |g|
           = link_to group_messages_path(g) do

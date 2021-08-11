@@ -35,6 +35,12 @@ a{
   width: 30px;
 }
 
+select#group_department {
+  width: 600px;
+  height: 50px;
+  padding: 0 15px;
+}
+
 .side-bar{
   display: inline-block;
   width   :250px;
@@ -107,13 +113,24 @@ a{
       color:white;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       &__user-name{
         font-size: 20px;
         margin-top:-4px;
       }
+      &__sign-out a {
+        padding: 15px;
+        border-radius: 50%;
+        border: lightgray solid 1px;
+        color: lightskyblue;
+      }
+      &__sign-out a:hover {
+        background-color: lightslategray;
+      }
       &__user-icon{
         display: inline-block;
         display: flex;
+        display: none;
       }
     }
   }
@@ -141,7 +158,7 @@ a{
 
 
 
-@media screen and (min-width: 491px) and (max-width: 767px) { /*ウィンドウ幅が491以上767px未満の場合に適用(タブレット)*/
+// @media screen and (min-width: 491px) and (max-width: 767px) { /*ウィンドウ幅が491以上767px未満の場合に適用(タブレット)*/
 
 //   .side-bar-mobile {
 //     display: none;
@@ -214,11 +231,11 @@ a{
 //   a{
 //     text-decoration: none;
 //   }
-}
+// }
 
 
 
-@media screen and (max-width: 490px) { /*ウィンドウ幅が最大479pxまでの場合に適用*/
+@media screen and (max-width: 767px) { /*ウィンドウ幅が最大479pxまでの場合に適用*/
 .side-bar {
   display: none;
 }
@@ -251,7 +268,14 @@ a{
       &__user-name{
         font-size: 20px;
       }
+      &__sign-out {
+        padding: 15px;
+        border-radius: 50%;
+        border: lightgray solid 1px;
+        color: lightskyblue;
+      }
       &__user-icon{
+        display: none;
       }
     }
   }
@@ -304,47 +328,30 @@ a{
   .aaa{
     text-decoration: none;
   }
-  .form__message{
-    width:850px;
-    padding: 10px;
-  }
 
   .new_message{
-    display: flex;
-    width:1200px;
-  }
-  #message_content{
-    height:50px;
-    width:200px;
+  width: 100%;
+  display: flex;
   }
   .send-btn{
-    background-color:#31aef0;
-    height:35px;
-    width:45px;
-    color:#ffffff;
-    text-align: center;
-    margin-left: 3px;
+    
   }
   .hidden{
     display: none;
   }
   a{
     text-decoration: none;
-    color:#31aef0;
+    color:skyblue;
   }
   .main-chat{
     // width: calc(100vw - 300px);
     position: relative;
     &__modoru{
-      position: absolute;
-      top: 0;
-      left: 0;
+      height: 50px;
       &__link {
-        display: inline-block;
-        position: relative;
-        width: 30px;
-        height: 22px;
-        margin: 20px;
+        padding-left: 18.75px;
+        padding-right: 20px;
+        font-size: 30px;
         &__span {
           display: inline-block;
           position: absolute;
@@ -368,12 +375,6 @@ a{
       }
     }
     &__header{
-      width: 100%;
-      padding: 15% 10% 5%;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: solid 1px #eee;
-      overflow: scroll;
       &__left-content{
         &__kintai-link{
           font-style: italic;
@@ -389,76 +390,37 @@ a{
         }
       }
       &__right-content{
-        color:#31aef0;
+        color:skyblue;
       }
     }
     &__main-content{
-      width: 100%;
+      width: 100vw;
         &__message-space{
-        height: calc(100vh - 190px);
+        height: calc(100vh - 150px);
         background-color: #fafafa;
-        overflow: scroll;
-        padding-left: 0;
+        overflow-y: scroll;
+        padding: 0 10px;
         .message{
-          padding-top: 10px;
-          width: 250px;
           &__upper-message{
-          height: 100px;
           display:flex;
+          padding-bottom: 10px;
           flex-direction: column;
             &__user-name  {
               padding-top: 10px;
               height:30px;
-              width:200px;
               color:#333333;
               font-size:25px;
             }
             &__date{
-              height:20px;
-              width:300px;
-              margin-top: 10px;
-              font-size:18px;
-              color:#999999;
-              display: inline-block;
+              display: none;
             }
+
           }
           &__lower-message{
             height:100%;
             width:100%;
             font-size:17px;
             color:#434A45;
-          }
-        }
-      }
-    }
-    &__footer{
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color:#d2d2d2;
-      display: flex;
-      padding: 20px;
-      &__a{
-        position: relative;
-        &__form{
-          width:200px;
-          // margin-right: 200px;
-          background-color:#ffffff;
-          color:#999999;
-
-          &__icon{
-          font-size: 30px;
-          height:50px;
-          text-align: right;
-          padding:15px;
-          position: absolute;
-          left:200px;
-          bottom: 0;
-          }
-          &__send-btn{
-            position: absolute;
-            left: 200px;
-            color:#999999;
           }
         }
       }

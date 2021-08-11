@@ -1,24 +1,26 @@
 .main-chat
-  .main-chat__modoru
-    = link_to root_path(), class: 'main-chat__modoru__link' do
-      %span.main-chat__modoru__link__span
-      %span.main-chat__modoru__link__span2
   .main-chat__header
-
+    .main-chat__modoru
+      = link_to root_path(), class: 'main-chat__modoru__link' do
+        %i.fas.fa-caret-left
     .main-chat__header__left-content
-      .main-chat__header__left-content__kintai-link
-        %p
-          勤怠は
-          %a(href='https://linktr.ee/matsui_shuzo_kintai') ここ
-          から
+      -# .main-chat__header__left-content__kintai-link
+      -#   %p
+      -#     勤怠は
+      -#     %a(href='https://linktr.ee/matsui_shuzo_kintai') ここ
+      -#     から
       .main-chat__header__left-content__group-name
         = @group.name
-      .main-chat__header__left-content__user-name
-        Member:
-        - @group.users.each do|user|
-          = user.name
+      .main-chat__header__left-content__kintai-link
+        %a{ href: "https://linktr.ee/matsui_shuzo_kintai", title: "勤怠" }
+          %i.fas.fa-user-clock
+      -# .main-chat__header__left-content__user-name
+      -#   Member:
+      -#   - @group.users.each do|user|
+      -#     = user.name
     .main-chat__header__right-content
-      = link_to 'Edit', edit_group_path(@group)
+      = link_to edit_group_path(@group) do
+        %i.fas.fa-edit
   .main-chat__main-content
     .main-chat__main-content__message-space
       = render @messages
@@ -34,4 +36,5 @@
           -#     = icon('fas', 'image', class: 'icon')
           -#     = f.file_field :image, class: 'hidden'
           .main-chat__footer__a__form__send-btn
-            = f.submit'送信',class:'send-btn'
+            = f.button type: "submit", class:'send-btn' do
+              %i.fas.fa-arrow-circle-up
