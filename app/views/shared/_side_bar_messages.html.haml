@@ -1,0 +1,129 @@
+.side-bar
+  .side-bar__top-content
+    .side-bar__top-content__user
+      .side-bar__top-content__user__user-name
+        = current_user.name
+      .side-bar__top-content__user__sign-out
+        = link_to destroy_user_session_path, method: :delete do
+          %i.fas.fa-sign-out-alt
+      .side-bar__top-content__user__user-icon
+        = link_to new_group_path(),class:"edit_icon"do
+          %i.far.fa-edit
+        = link_to edit_user_path(current_user),class:"edit_icon"do
+          %i.fas.fa-cog
+  .side-bar__group
+    - if current_user.name == "大阪社員"
+      .side-bar__group__department
+        -if @group.department == "営業部"
+          %details{ open: true }
+            %summary 営業部
+            - current_user.groups.where(department: "営業部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name 
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+        - else
+          %details
+            %summary 営業部
+            - current_user.groups.where(department: "営業部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+      .side-bar__group__department
+        -if @group.department == "貿易部"
+          %details{ open: true }
+            %summary 貿易部
+            - current_user.groups.where(department: "貿易部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name 
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+        - else
+          %details
+            %summary 貿易部
+            - current_user.groups.where(department: "貿易部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+      .side-bar__group__department
+        -if @group.department == "システム部"
+          %details{ open: true }
+            %summary システム部
+            - current_user.groups.where(department: "システム部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name 
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+        - else
+          %details
+            %summary システム部
+            - current_user.groups.where(department: "システム部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+      - current_user.groups.where(department: "").each do |g|
+        = link_to group_messages_path(g) do
+          - if g.id == @group.id
+            .side-bar__group__department__name-selected
+              .report-icon
+                %i.fas.fa-book-open
+              = g.name 
+          - else
+            .side-bar__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+      - current_user.groups.where(department: nil).each do |g|
+        = link_to group_messages_path(g) do
+          - if g.id == @group.id
+            .side-bar__group__department__name-selected
+              .report-icon
+                %i.fas.fa-book-open
+              = g.name 
+          - else
+            .side-bar__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+    - else
+      - current_user.groups.each do |g|
+        = link_to group_messages_path(g) do
+          - if g.id == @group.id
+            .side-bar__group__department__name-selected
+              .report-icon
+                %i.fas.fa-book-open
+              = g.name 
+          - else
+            .side-bar__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+          -# .side-bar__groups__group__message
+          -#   = group.show_last_message

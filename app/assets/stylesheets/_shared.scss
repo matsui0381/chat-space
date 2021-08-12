@@ -15,41 +15,93 @@ a{
   text-decoration: none;
 }
 
-
-@media screen and (min-width: 767px) { /*ウィンドウ幅が767px以上の場合に適用*/
-.side-ber-mobile {
+@media screen and (min-width: 767px) { /*ウィンドウ幅が767px以上の場合に適用(PC用)*/
+.side-bar-mobile {
   display: none;
 }
-.side-ber{
+
+.side-bar summary {
+  width: 250px;
+  margin-left: -20px;
+  padding: 10px 10px 10px 20px;
+  cursor: pointer;
+}
+
+.side-bar summary:hover {
+  background-color: lightslategrey;
+}
+
+.report-icon {
+  width: 30px;
+}
+
+select#group_department {
+  width: 600px;
+  height: 50px;
+  padding: 0 15px;
+}
+
+.side-bar{
   display: inline-block;
-  width   :300px;
+  width   :250px;
   height  :100vh;
   background-color:#2f3e51;
+
   &__group{
-    width: 300px;
-    height: 105px;
-    background-color:#2f3e51;
-    padding-top:20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color:#ffffff;
-    &__name{
-        width:260px;
-        height:20px;
-        background-color: #2f3e51;
+    width: 100%;
+    padding: 0 20px;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    overflow: hidden visible;
+    &__department {
+      &__name-selected {
+        display: flex;
+        background-color: lightslategrey;
         font-size:15px;
+        text-decoration: none;
+        color: white;
+        width: 250px;
+        margin-left: -20px;
+        padding: 5px 5px 5px 30px;
       }
-    &__message{
-        margin-top:5px;
-        width:260px;
-        height:20px;
-        background-color: #2f3e51;
-        font-size:11px;
+      &__name{
+          display: flex;
+          background-color: #2f3e51;
+          font-size:15px;
+          text-decoration: none;
+          color: white;
+          width: 250px;
+          margin-left: -20px;
+          padding: 5px 5px 5px 30px;
+      }
+      &__name:hover {
+        background-color: lightslategrey;
+      }
+      &__message{
+          margin-top:5px;
+          width:260px;
+          height:20px;
+          background-color: #2f3e51;
+          font-size:11px;
+      }
+    }
+    &__name {
+      background-color: #2f3e51;
+      font-size:15px;
+      text-decoration: none;
+      color: white;
+      width: 250px;
+      margin-left: -20px;
+      padding: 5px 5px 5px 30px;
+    }
+    &__name:hover {
+      background-color: lightslategrey;
     }
   }
+
   &__top-content{
     width:100%;
-    height:100px;
+    height:80px;
     background-color: #253141;
     display: flex;
     align-items: center;
@@ -61,12 +113,24 @@ a{
       color:white;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       &__user-name{
-        font-size: 16px;
+        font-size: 20px;
+        margin-top:-4px;
+      }
+      &__sign-out a {
+        padding: 15px;
+        border-radius: 50%;
+        border: lightgray solid 1px;
+        color: lightskyblue;
+      }
+      &__sign-out a:hover {
+        background-color: lightslategray;
       }
       &__user-icon{
         display: inline-block;
         display: flex;
+        display: none;
       }
     }
   }
@@ -75,6 +139,7 @@ a{
   color:#ffffff;
   display: inline-block;
   text-decoration: none;
+  display: none;
 }
 .set_icon{
   color:#ffffff;
@@ -93,66 +158,158 @@ a{
 
 
 
-@media screen and (min-width: 491px) and (max-width: 767px) { /*ウィンドウ幅が491以上767px未満の場合に適用(タブレット)*/
+// @media screen and (min-width: 491px) and (max-width: 767px) { /*ウィンドウ幅が491以上767px未満の場合に適用(タブレット)*/
 
-  .side-ber-mobile {
-    display: none;
-  }
-  .side-ber{
-    display: inline-block;
-    width   :150px;
-    height  :100vh;
-    background-color:#2f3e51;
-    &__group{
-      width: 300px;
-      height: 105px;
-      background-color:#2f3e51;
-      padding-top:20px;
-      padding-left: 20px;
-      padding-right: 20px;
-      color:#ffffff;
-      &__name{
-          width:260px;
-          height:20px;
-          background-color: #2f3e51;
-          font-size:15px;
-        }
-      &__message{
-          margin-top:5px;
-          width:260px;
-          height:20px;
-          background-color: #2f3e51;
-          font-size:11px;
-      }
-    }
-    &__top-content{
-      width:100%;
-      height:100px;
-      background-color: #253141;
+//   .side-bar-mobile {
+//     display: none;
+//   }
+
+//   .side-bar{
+//     display: inline-block;
+//     width   :150px;
+//     height  :100vh;
+//     background-color:#2f3e51;
+//     &__group{
+//       width: 300px;
+//       height: 105px;
+//       background-color:#2f3e51;
+//       padding-top:20px;
+//       padding-left: 20px;
+//       padding-right: 20px;
+//       color:#ffffff;
+//       &__name{
+//           width:260px;
+//           height:20px;
+//           background-color: #2f3e51;
+//           font-size:15px;
+//         }
+//       &__message{
+//           margin-top:5px;
+//           width:260px;
+//           height:20px;
+//           background-color: #2f3e51;
+//           font-size:11px;
+//       }
+//     }
+//     &__top-content{
+//       width:100%;
+//       height:100px;
+//       background-color: #253141;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+
+//       &__user{
+//         width:260px;
+//         height:20px;
+//         color:white;
+//         display: flex;
+//         justify-content: space-between;
+//         &__user-name{
+//           font-size: 16px;
+//         }
+//         &__user-icon{
+//           display: inline-block;
+//           display: flex;
+//         }
+//       }
+//     }
+//   }
+//    .edit_icon{
+//     color:#ffffff;
+//     display: inline-block;
+//     text-decoration: none;
+//   }
+//   .set_icon{
+//     color:#ffffff;
+//     margin-left: 5px;
+//   }
+//   #btn-image{
+//     display: none;
+//     color: #31aef0;
+//   }
+//   a{
+//     text-decoration: none;
+//   }
+// }
+
+
+
+@media screen and (max-width: 767px) { /*ウィンドウ幅が最大479pxまでの場合に適用*/
+.side-bar {
+  display: none;
+}
+
+.side-bar-mobile summary {
+  width: 100vw;
+  padding: 10px 10px 10px 20px;
+  cursor: pointer;
+  margin: 0 -20px;
+}
+
+.report-icon {
+  width: 30px;
+}
+
+.side-bar-mobile {
+  width: 100%;
+  color: white;
+  float: left;
+  &__top-content{
+    background-color: #253141;
+    height: 80px;
+    padding: 0 20px;
+    &__user{
+      width: 100%;
+      height: 100%;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-
-      &__user{
-        width:260px;
-        height:20px;
-        color:white;
-        display: flex;
-        justify-content: space-between;
-        &__user-name{
-          font-size: 16px;
-        }
-        &__user-icon{
-          display: inline-block;
-          display: flex;
-        }
+      &__user-name{
+        font-size: 20px;
+      }
+      &__sign-out {
+        padding: 15px;
+        border-radius: 50%;
+        border: lightgray solid 1px;
+        color: lightskyblue;
+      }
+      &__user-icon{
+        display: none;
       }
     }
   }
-   .edit_icon{
+  &__group{
+    height: calc(100vh - 80px);
+    background-color: #2f3e51;
+    padding: 0 20px;
+    overflow-y: scroll;
+    &__department {
+      &__name {
+        display: flex;
+        background-color: #2f3e51;
+        font-size:15px;
+        text-decoration: none;
+        color: white;
+        width: 100vw;
+        margin-left: -20px;
+        padding: 5px 5px 5px 30px;
+      }
+      &__name:hover {
+        background-color: lightslategrey;
+      }
+    }
+    &__message{
+      font-size: 4px;
+      color: #2f3e51;
+    }
+  }
+}
+    .edit_icon{
     color:#ffffff;
     display: inline-block;
     text-decoration: none;
+    display: none;
   }
   .set_icon{
     color:#ffffff;
@@ -162,238 +319,111 @@ a{
     display: none;
     color: #31aef0;
   }
-  a{
+  .group_link{
+    color:#ffffff;
+  }
+  .group_name{
+    color:#ffffff;
+  }
+  .aaa{
     text-decoration: none;
   }
-}
 
-
-
-@media screen and (max-width: 490px) { /*ウィンドウ幅が最大479pxまでの場合に適用*/
-  .side-ber {
+  .new_message{
+  width: 100%;
+  display: flex;
+  }
+  .send-btn{
+    
+  }
+  .hidden{
     display: none;
   }
-  .side-ber-mobile {
-      width: 100%;
-      color: white;
-      float: left;
-      &__top-content{
-        background-color: #253141;
-        height: 100px;
-        padding: 0 20px;
-        &__user{
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          &__user-name{
-            font-size: 20px;
-            font-weight: bold;
-          }
-          &__user-icon{
-          }
-        }
-      }
-      &__groups{
-        height: calc(100vh - 100px);
-        background-color: #2f3e51;
-        padding: 20px 20px 0;
-        overflow: auto;
-        text-align: center;
-        &__group{
-          margin-bottom: 1em;
-          &__name{
-            margin: 1em 0;
-            font-size: 16px;
-          }
-          &__message{
-            font-size: 4px;
-            color: #2f3e51;
-          }
-        }
-      }
-    }
-     .edit_icon{
-      color:#ffffff;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .set_icon{
-      color:#ffffff;
-      margin-left: 5px;
-    }
-    #btn-image{
-      display: none;
-      color: #31aef0;
-    }
-    .group_link{
-      color:#ffffff;
-    }
-    .group_name{
-      color:#ffffff;
-    }
-    .aaa{
-      text-decoration: none;
-    }
-    .form__message{
-      width:850px;
-      padding: 10px;
-    }
-
-    .new_message{
-      display: flex;
-      width:1200px;
-    }
-    #message_content{
-      height:50px;
-      width:200px;
-    }
-    .send-btn{
-      background-color:#31aef0;
-      height:35px;
-      width:45px;
-      color:#ffffff;
-      text-align: center;
-      margin-left: 3px;
-    }
-    .hidden{
-      display: none;
-    }
-    a{
-      text-decoration: none;
-      color:#31aef0;
-    }
-    .main-chat{
-      // width: calc(100vw - 300px);
-      position: relative;
-      &__modoru{
-        position: absolute;
-        top: 0;
-        left: 0;
-        &__link {
+  a{
+    text-decoration: none;
+    color:skyblue;
+  }
+  .main-chat{
+    // width: calc(100vw - 300px);
+    position: relative;
+    &__modoru{
+      height: 50px;
+      &__link {
+        padding-left: 18.75px;
+        padding-right: 20px;
+        font-size: 30px;
+        &__span {
           display: inline-block;
-          position: relative;
-          width: 30px;
-          height: 22px;
-          margin: 20px;
-          &__span {
-            display: inline-block;
-            position: absolute;
-            top: 0;
-            width: 50%;
-            height: 2px;
-            background-color: #253141;
-            border-radius: 2px;
-            transform: rotate(-45deg);
-          }
-          &__span2 {
-            display: inline-block;
-            position: absolute;
-            top: 45%;
-            width: 50%;
-            height: 2px;
-            background-color: #253141;
-            border-radius: 2px;
-            transform: rotate(45deg);
-          }
+          position: absolute;
+          top: 0;
+          width: 50%;
+          height: 2px;
+          background-color: #253141;
+          border-radius: 2px;
+          transform: rotate(-45deg);
+        }
+        &__span2 {
+          display: inline-block;
+          position: absolute;
+          top: 45%;
+          width: 50%;
+          height: 2px;
+          background-color: #253141;
+          border-radius: 2px;
+          transform: rotate(45deg);
         }
       }
-      &__header{
-        width: 100%;
-        padding: 15% 10% 5%;
-        display: flex;
-        justify-content: space-between;
-        border-bottom: solid 1px #eee;
-        overflow: scroll;
-        &__left-content{
-          &__kintai-link{
-            font-style: italic;
-          }
-          &__group-name{
-            font-size: 20px;
-            color:#333333;
-          }
-          &__user-name{
-            color:#999999;
-            font-size:12px;
-            margin-top: 2%;
-          }
+    }
+    &__header{
+      &__left-content{
+        &__kintai-link{
+          font-style: italic;
         }
-        &__right-content{
-          color:#31aef0;
+        &__group-name{
+          font-size: 20px;
+          color:#333333;
+        }
+        &__user-name{
+          color:#999999;
+          font-size:12px;
+          margin-top: 2%;
         }
       }
-      &__main-content{
-        width: 100%;
-          &__message-space{
-          height: calc(100vh - 190px);
-          background-color: #fafafa;
-          overflow: scroll;
-          padding-left: 0;
-          .message{
-            padding-top: 10px;
-            width: 250px;
-            &__upper-message{
-            height: 100px;
-            display:flex;
-            flex-direction: column;
-              &__user-name  {
-                padding-top: 10px;
-                height:30px;
-                width:200px;
-                color:#333333;
-                font-size:25px;
-              }
-              &__date{
-                height:20px;
-                width:300px;
-                margin-top: 10px;
-                font-size:18px;
-                color:#999999;
-                display: inline-block;
-              }
+      &__right-content{
+        color:skyblue;
+      }
+    }
+    &__main-content{
+      width: 100vw;
+        &__message-space{
+        height: calc(100vh - 150px);
+        background-color: #fafafa;
+        overflow-y: scroll;
+        padding: 0 10px;
+        .message{
+          &__upper-message{
+          display:flex;
+          padding-bottom: 10px;
+          flex-direction: column;
+            &__user-name  {
+              padding-top: 10px;
+              height:30px;
+              color:#333333;
+              font-size:25px;
             }
-            &__lower-message{
-              height:100%;
-              width:100%;
-              font-size:17px;
-              color:#434A45;
+            &__date{
+              display: none;
             }
-          }
-        }
-      }
-      &__footer{
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color:#d2d2d2;
-        display: flex;
-        padding: 20px;
-        &__a{
-          position: relative;
-          &__form{
-            width:200px;
-            // margin-right: 200px;
-            background-color:#ffffff;
-            color:#999999;
 
-            &__icon{
-            font-size: 30px;
-            height:50px;
-            text-align: right;
-            padding:15px;
-            position: absolute;
-            left:200px;
-            bottom: 0;
-            }
-            &__send-btn{
-              position: absolute;
-              left: 200px;
-              color:#999999;
-            }
+          }
+          &__lower-message{
+            height:100%;
+            width:100%;
+            font-size:17px;
+            color:#434A45;
           }
         }
       }
     }
+  }
 }

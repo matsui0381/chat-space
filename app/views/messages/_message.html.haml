@@ -5,9 +5,20 @@
     .message__upper-message__date
       = message.created_at.strftime("%Y/%m/%d %H:%M")
     .message__upper-message__edit
-      = link_to '編集', edit_group_message_path(@group.id,message.id)
-      = "/"
-      = link_to '削除', group_message_path(@group.id,message.id), method: :delete, data: { confirm: "日報を削除しますか？" }
+      = link_to edit_group_message_path(@group.id,message.id) do
+        %i.fas.fa-edit
+    .message__upper-message__delete
+      = link_to group_message_path(@group.id,message.id), method: :delete, data: { confirm: "日報を削除しますか？" } do
+        %i.fas.fa-trash-alt
+    .message-mobile__upper-message
+      .message-mobile__upper-message__date
+        = message.created_at.strftime("%Y/%m/%d %H:%M")
+      .message-mobile__upper-message__edit
+        = link_to edit_group_message_path(@group.id,message.id) do
+          %i.fas.fa-edit
+      .message-mobile__upper-message__delete
+        = link_to group_message_path(@group.id,message.id), method: :delete, data: { confirm: "日報を削除しますか？" } do
+          %i.fas.fa-trash-alt
   .message__lower-message
     - if message.content.present?
       %p.lower-message__content
