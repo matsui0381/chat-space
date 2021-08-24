@@ -133,7 +133,47 @@
           - if Group.joins(:messages).where(department: "システム部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "システム部").count
             .report-department-updated-icon
               %i.fas.fa-check
-      - current_user.groups.where(department: "").each do |g|
+      .side-bar__group__department
+        -if @group.department == "人事部"
+          %details{ open: true }
+            %summary 人事部
+            - current_user.groups.where(department: "人事部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "人事部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "人事部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 人事部
+            - current_user.groups.where(department: "人事部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "人事部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "人事部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      - current_user.groups.where.not(department: ["営業部","貿易部","システム部","人事部","四季酒造"]).each do |g|
         = link_to group_messages_path(g) do
           - if g.id == @group.id
             .side-bar__group__department__name-selected
@@ -151,7 +191,208 @@
               - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
                 .report-updated-icon-independence
                   %i.fas.fa-check
-      - current_user.groups.where(department: nil).each do |g|
+    - elsif current_user.name == "管理者アカウント"
+      .side-bar__group__department
+        -if @group.department == "営業部"
+          %details{ open: true }
+            %summary 営業部
+            - current_user.groups.where(department: "営業部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "営業部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "営業部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 営業部
+            - current_user.groups.where(department: "営業部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "営業部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "営業部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      .side-bar__group__department
+        -if @group.department == "貿易部"
+          %details{ open: true }
+            %summary 貿易部
+            - current_user.groups.where(department: "貿易部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "貿易部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "貿易部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 貿易部
+            - current_user.groups.where(department: "貿易部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "貿易部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "貿易部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      .side-bar__group__department
+        -if @group.department == "システム部"
+          %details{ open: true }
+            %summary システム部
+            - current_user.groups.where(department: "システム部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "システム部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "システム部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary システム部
+            - current_user.groups.where(department: "システム部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "システム部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "システム部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      .side-bar__group__department
+        -if @group.department == "人事部"
+          %details{ open: true }
+            %summary 人事部
+            - current_user.groups.where(department: "人事部").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "人事部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "人事部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 人事部
+            - current_user.groups.where(department: "人事部").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "人事部").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "人事部").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      .side-bar__group__department
+        -if @group.department == "四季酒造"
+          %details{ open: true }
+            %summary 四季酒造
+            - current_user.groups.where(department: "四季酒造").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "四季酒造").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "四季酒造").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 四季酒造
+            - current_user.groups.where(department: "四季酒造").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "四季酒造").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "四季酒造").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      - current_user.groups.where.not(department: ["営業部","貿易部","システム部","人事部","四季酒造"]).each do |g|
         = link_to group_messages_path(g) do
           - if g.id == @group.id
             .side-bar__group__department__name-selected

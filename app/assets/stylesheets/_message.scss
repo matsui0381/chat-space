@@ -177,7 +177,8 @@ a{
       height: calc(100vh - 220px);
       padding: 0 60px;
       background-color: #fafafa;
-      overflow: scroll;
+      overflow: hidden;
+      overflow-y: scroll;
 
       .message{
         width: 100%;
