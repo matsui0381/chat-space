@@ -410,6 +410,24 @@
               - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
                 .report-updated-icon-independence
                   %i.fas.fa-check
+      - current_user.groups.where(department: nil).each do |g|
+        = link_to group_messages_path(g) do
+          - if g.id == @group.id
+            .side-bar__group__department__name-selected
+              .report-icon
+                %i.fas.fa-book-open
+              = g.name 
+              - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                .report-updated-icon-independence
+                  %i.fas.fa-check
+          - else
+            .side-bar__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+              - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                .report-updated-icon-independence
+                  %i.fas.fa-check
     - else
       - current_user.groups.each do |g|
         = link_to group_messages_path(g) do

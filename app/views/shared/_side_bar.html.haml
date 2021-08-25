@@ -167,6 +167,15 @@
             - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
               .report-updated-icon-independence
                 %i.fas.fa-check
+      - current_user.groups.where(department: nil).each do |g|
+        = link_to group_messages_path(g) do
+          .side-bar__group__department__name
+            .report-icon
+              %i.fas.fa-book
+            = g.name
+            - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+              .report-updated-icon-independence
+                %i.fas.fa-check
     - else
       - current_user.groups.each do |g|
         = link_to group_messages_path(g) do
@@ -349,6 +358,16 @@
             %i.fas.fa-check
       .side-bar-mobile__group__department
         - current_user.groups.where.not(department: ["営業部","貿易部","システム部","人事部","四季酒造"]).each do |g|
+          = link_to group_messages_path(g) do
+            .side-bar-mobile__group__department__name
+              .report-icon
+                %i.fas.fa-book
+              = g.name
+              - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                .report-updated-icon
+                  %i.fas.fa-check
+      .side-bar-mobile__group__department
+        - current_user.groups.where(department: nil).each do |g|
           = link_to group_messages_path(g) do
             .side-bar-mobile__group__department__name
               .report-icon
