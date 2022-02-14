@@ -69,6 +69,8 @@ gem 'fog-aws'
 gem 'mini_racer'
 gem 'rb-readline', :require=>true
 
+gem "mimemagic", "~> 0.3.10"
+
 group :production do
 gem 'unicorn','5.4.1'
 end

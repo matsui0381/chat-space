@@ -7,8 +7,11 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'https://unpkg.com/sanitize.css'
     = stylesheet_link_tag    'application', media: 'all'
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+
+    = favicon_link_tag 'favicon.ico'
 
   %body
     = render 'layouts/notifications'
