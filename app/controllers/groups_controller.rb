@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  protect_from_forgery
   before_action :set_group, only: [:edit, :update]
 
   def index
