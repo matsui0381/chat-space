@@ -612,6 +612,46 @@
             .report-department-updated-icon
               %i.fas.fa-check
       .side-bar__group__department
+        -if @group.department == "山陰の蔵"
+          %details{ open: true }
+            %summary 山陰の蔵
+            - current_user.groups.where(department: "山陰の蔵").each do |g|
+              = link_to group_messages_path(g) do
+                - if g.id == @group.id
+                  .side-bar__group__department__name-selected
+                    .report-icon
+                      %i.fas.fa-book-open
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+                - else
+                  .side-bar__group__department__name
+                    .report-icon
+                      %i.fas.fa-book
+                    = g.name
+                    - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                      .report-updated-icon
+                        %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "山陰の蔵").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "山陰の蔵").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+        - else
+          %details
+            %summary 山陰の蔵
+            - current_user.groups.where(department: "山陰の蔵").each do |g|
+              = link_to group_messages_path(g) do
+                .side-bar__group__department__name
+                  .report-icon
+                    %i.fas.fa-book
+                  = g.name
+                  - if g.messages.where("messages.created_at >= ?", Time.zone.now.beginning_of_day).exists?
+                    .report-updated-icon
+                      %i.fas.fa-check
+          - if Group.joins(:messages).where(department: "山陰の蔵").where("messages.created_at >= ?", Time.zone.now.beginning_of_day).count >= current_user.groups.where(department: "山陰の蔵").count
+            .report-department-updated-icon
+              %i.fas.fa-check
+      .side-bar__group__department
         -if @group.department == "京都酒造"
           %details{ open: true }
             %summary 京都酒造
